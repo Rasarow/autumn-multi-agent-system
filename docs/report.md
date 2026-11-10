@@ -1,3 +1,5 @@
+Rasih Alperen Sahinoz 11-413a
+
 Project submission 10 November 2026
 
 [Source repository on GitHub](https://github.com/Rasarow/autumn-multi-agent-system)
