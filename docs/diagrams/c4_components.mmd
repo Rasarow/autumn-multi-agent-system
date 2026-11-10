@@ -1,0 +1,5 @@
+flowchart LR
+ P["Planner 0.8B"] --> R["Dated evidence researcher"] --> W["Writer 2B or 4B"] --> V["Exact quote gate then 4B verifier"]
+ V -->|"Approved"| F["Store approved episode and return"]
+ V -->|"Rejected once"| X["Repair using 4B"] --> V
+ V -->|"No support or repair exhausted"| A["Abstain and emit alert"]

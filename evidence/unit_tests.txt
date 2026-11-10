@@ -1,0 +1,21 @@
+[dependencies]\langgraph\cache\base\__init__.py:8: LangChainPendingDeprecationWarning: The default value of `allowed_objects` will change in a future version. Pass an explicit value (e.g., allowed_objects='messages' or allowed_objects='core') to suppress this warning.
+  from langgraph.checkpoint.serde.jsonplus import JsonPlusSerializer
+test_abstention_has_no_repair (test_system.Tests.test_abstention_has_no_repair) ... ok
+test_failure_closed (test_system.Tests.test_failure_closed) ... ok
+test_fts_injection (test_system.Tests.test_fts_injection) ... ok
+test_history_date_scope (test_system.Tests.test_history_date_scope) ... ok
+test_input_limits (test_system.Tests.test_input_limits) ... ok
+test_integrated_approval (test_system.Tests.test_integrated_approval) ... ok
+test_one_repair_then_withhold (test_system.Tests.test_one_repair_then_withhold) ... ok
+test_quote_tampering (test_system.Tests.test_quote_tampering) ... ok
+test_reingest_removes_deleted_sections (test_system.Tests.test_reingest_removes_deleted_sections) ... ok
+test_session_scope_and_forget (test_system.Tests.test_session_scope_and_forget) ... ok
+test_telemetry_alerts_and_traces (test_system.Tests.test_telemetry_alerts_and_traces) ... ok
+test_temporal_versions (test_system.Tests.test_temporal_versions) ... ok
+test_unknown_and_expired_source (test_system.Tests.test_unknown_and_expired_source) ... ok
+test_verifier_blocks_irrelevance (test_system.Tests.test_verifier_blocks_irrelevance) ... ok
+
+----------------------------------------------------------------------
+Ran 14 tests in 0.328s
+
+OK

@@ -1,0 +1,16 @@
+{
+  "models": {
+    "small": {
+      "name": "qwen35-0.8b",
+      "url": "http://127.0.0.1:8181"
+    },
+    "medium": {
+      "name": "qwen35-2b",
+      "url": "http://127.0.0.1:8182"
+    },
+    "large": {
+      "name": "qwen35-4b",
+      "url": "http://127.0.0.1:8183"
+    }
+  }
+}

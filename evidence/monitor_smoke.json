@@ -1,0 +1,18 @@
+{
+  "health": {
+    "status": 200,
+    "bytes": 15
+  },
+  "metrics": {
+    "status": 200,
+    "bytes": 276
+  },
+  "traces": {
+    "status": 200,
+    "bytes": 25178
+  },
+  "alerts": {
+    "status": 200,
+    "bytes": 404
+  }
+}

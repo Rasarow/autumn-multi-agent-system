@@ -1,0 +1,24 @@
+{
+  "date": "2026-11-10",
+  "os": "Windows",
+  "python": "3.12",
+  "cpu": "Intel Core i5-12500H",
+  "ram_gib": 15.7,
+  "gpu": "NVIDIA GeForce RTX 4060 Laptop GPU",
+  "vram_mib": 8188,
+  "llama_cpp_release": "b12110",
+  "backend": "Vulkan0",
+  "context_per_server": 4096,
+  "parallel_slots_per_server": 1,
+  "threads_per_server": 4,
+  "batch": 128,
+  "ubatch": 128,
+  "temperature": 0,
+  "seed": 42,
+  "thinking": false,
+  "limitations": [
+    "Docker not installed; container topology not executed",
+    "Small same-family diagnostic set; no general benchmark claim",
+    "Historical policy question returned a false abstention"
+  ]
+}

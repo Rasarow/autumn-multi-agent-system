@@ -1,0 +1,9 @@
+autumn_abstained_total 3.0
+autumn_alerts_total 3.0
+autumn_approved_total 5.0
+autumn_completion_tokens_total 1634.0
+autumn_llm_calls_total 26.0
+autumn_repairs_total 2.0
+autumn_request_seconds_sum 26.57851939999955
+autumn_requests_total 8.0
+autumn_retrievals_total 8.0

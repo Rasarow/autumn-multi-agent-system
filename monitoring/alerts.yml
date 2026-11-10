@@ -1,0 +1,17 @@
+groups:
+  - name: autumn
+    rules:
+      - alert: AutumnWorkflowFailure
+        expr: increase(autumn_failed_total[5m]) > 0
+        for: 1m
+        labels:
+          severity: warning
+        annotations:
+          summary: Autumn has failed closed in the last five minutes
+      - alert: AutumnUnhealthy
+        expr: up{job="autumn"} == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: Autumn metrics endpoint is unavailable

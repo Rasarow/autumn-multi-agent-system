@@ -1,0 +1,11 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+[project]
+name = "autumn-evidence-agents"
+version = "1.0.0"
+description = "A local evidence-first multi-agent system"
+requires-python = ">=3.11"
+dependencies = ["langgraph==1.0.3"]
+[tool.setuptools]
+packages = ["autumn"]

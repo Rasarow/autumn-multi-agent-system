@@ -1,0 +1,29 @@
+sequenceDiagram
+ actor U as User
+ participant S as Supervisor
+ participant P as Planner 0.8B
+ participant M as Dated memory
+ participant W as Writer 2B or 4B
+ participant V as Verifier 4B
+ U->>S: Question and effective date
+ S->>P: Plan query with scoped history
+ P-->>S: Query and complexity proposal
+ S->>M: search_documents then read_section
+ M-->>S: Valid sources with IDs and hashes
+ S->>W: Select verbatim evidence
+ W-->>S: Claims and abstention flag
+ S->>S: Check schema IDs and exact quote matches
+ alt Valid nonempty candidate
+  S->>V: Check relevance completeness and dates
+  V-->>S: Approval or rejection
+ end
+ opt Rejection with repair budget remaining
+  S->>W: One repair using 4B
+  W-->>S: Revised candidate
+  S->>S: Repeat deterministic gate
+  S->>V: Recheck revised evidence
+  V-->>S: Verdict
+ end
+ S->>M: Store scoped episode status
+ S-->>U: Approved quotations or abstention
+ Note over S,V: At most five model calls and one repair

@@ -1,0 +1,46 @@
+# Prepared CPU container topology. Docker was unavailable on the measured host.
+# Build and operational smoke testing on a Docker host is required before claiming this deployment works.
+x-model: &model
+  build:
+    context: .
+    dockerfile: deployment/Dockerfile.llama
+  read_only: true
+  user: "10001:10001"
+  cap_drop: [ALL]
+  security_opt: [no-new-privileges:true]
+  networks: [private]
+  pids_limit: 64
+  cpus: 4
+  mem_limit: 5g
+  volumes: ["./models:/models:ro"]
+  tmpfs: ["/tmp:size=64m"]
+services:
+  llm-small:
+    <<: *model
+    command: ["-m", "/models/Qwen3.5-0.8B-Q4_K_M.gguf", "--alias", "qwen35-0.8b", "--host", "0.0.0.0", "--port", "8080", "-c", "4096", "-t", "4", "--parallel", "1", "--no-webui", "--reasoning-budget", "0"]
+  llm-medium:
+    <<: *model
+    command: ["-m", "/models/Qwen3.5-2B-Q4_K_M.gguf", "--alias", "qwen35-2b", "--host", "0.0.0.0", "--port", "8080", "-c", "4096", "-t", "4", "--parallel", "1", "--no-webui", "--reasoning-budget", "0"]
+  llm-large:
+    <<: *model
+    command: ["-m", "/models/Qwen3.5-4B-Q4_K_M.gguf", "--alias", "qwen35-4b", "--host", "0.0.0.0", "--port", "8080", "-c", "4096", "-t", "4", "--parallel", "1", "--no-webui", "--reasoning-budget", "0"]
+  agent:
+    build:
+      context: .
+      dockerfile: deployment/Dockerfile
+    user: "10001:10001"
+    read_only: true
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    networks: [private]
+    pids_limit: 32
+    cpus: 2
+    mem_limit: 2g
+    tmpfs: ["/tmp:size=64m"]
+    volumes: ["./deployment/config.docker.json:/app/config.json:ro", "autumn-state:/state"]
+    depends_on: [llm-small, llm-medium, llm-large]
+networks:
+  private:
+    internal: true
+volumes:
+  autumn-state:

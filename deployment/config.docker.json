@@ -1,0 +1,16 @@
+{
+  "models": {
+    "small": {
+      "name": "qwen35-0.8b",
+      "url": "http://llm-small:8080"
+    },
+    "medium": {
+      "name": "qwen35-2b",
+      "url": "http://llm-medium:8080"
+    },
+    "large": {
+      "name": "qwen35-4b",
+      "url": "http://llm-large:8080"
+    }
+  }
+}

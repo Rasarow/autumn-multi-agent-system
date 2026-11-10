@@ -1,0 +1,10 @@
+flowchart LR
+ subgraph WORKER["Bounded isolated worker runtime"]
+  CLI["CLI and input guard"] --> G["LangGraph supervisor"]
+  G --> M[("SQLite FTS5 and episodes")]
+  G --> T["JSONL events alerts and metrics"]
+ end
+ G -->|"Loopback HTTP"| S["llama.cpp 0.8B planner"]
+ G -->|"Loopback HTTP"| W["llama.cpp 2B writer"]
+ G -->|"Loopback HTTP"| V["llama.cpp 4B complex writer and verifier"]
+ T --> O["Local read only monitor"]
