@@ -384,126 +384,13 @@ The prototype is useful as an auditable teaching system: it exposes model routin
 [Published implementation and reproduction instructions](https://github.com/Rasarow/autumn-multi-agent-system)
 
 
-# Oral defense questions
-
-
-## What is an LLM and what does the L mean
-
-A large language model learns statistical patterns in token sequences and generates tokens conditioned on context. L means large. In model labels, B means billion parameters, which is different from the letter L in LLM.
-
-
-## What is an agent and how is it different
-
-An agent combines a model with a goal, tools, state, and a control process that chooses actions and observes outcomes. An LLM alone produces text; Autumn’s supervisor turns model proposals into a bounded tool and verification workflow.
-
-
-## What is a hallucination
-
-A hallucination is unsupported or incorrect generated content presented as if it were established. It can include invented citations, wrong numbers, and unsupported claims. Exact source matching catches some forms but cannot establish source truth.
-
-
-## What is a context window
-
-It is the token budget available for the model’s current input and generated output. Prompts, history, retrieved evidence, and reasoning compete for space. This deployment uses 4096 tokens despite the models supporting a larger upstream context.
-
-
-## Which models were tested and why
-
-Qwen3.5 0.8B, 2B, and 4B Q4_K_M fit the measured GPU and permit a controlled size comparison. The 2B model scored 11/12, 4B 10/12, and 0.8B 6/12 on the local diagnostic. These are not cross family rankings.
-
-
-## Why is this a multi agent system
-
-Distinct planner, writer, and verifier model roles share one supervised graph, with a tool based researcher between them. They exchange typed state, use model routing, and can enter a bounded repair loop. They are integrated in one request flow.
-
-
-## Which architecture patterns are present
-
-Supervisor routing, a planner and executor split, retrieval augmented evidence selection, a verifier gate, and bounded reflection through one repair. There is no unrestricted autonomous loop.
-
-
-## Why LangGraph and why llama cpp
-
-LangGraph makes state and conditional transitions explicit. llama.cpp provides portable quantized local inference and Vulkan on the measured Windows GPU. The alternatives are discussed in the decision tables.
-
-
-## Which memory types are used
-
-Working graph state, recent approved session episodes, dated source knowledge, persistent outcome records, and procedural skill and prompt files. Session and date filters prevent unrelated recalled episodes from entering a request.
-
-
-## Why not use ordinary vector RAG alone
-
-Similarity does not establish validity date, source authority, session ownership, or verification. A temporal source store is needed for this policy task. Filtered hybrid or graph retrieval could improve semantic recall at larger scale.
-
-
-## What are tools and skills
-
-Tools are callable code interfaces such as dated search and section lookup. Skills are reusable procedural instructions describing when and how to use capabilities. Code enforces permissions; a Markdown skill alone cannot provide isolation.
-
-
-# Oral defense on evaluation and operations
-
-
-## How is long term memory controlled
-
-Only administrator supplied files become policy sources. Approved episodes may inform future planning within the same session and date. Reingestion replaces sources atomically, and forget deletes session episodes.
-
-
-## How do you evaluate the models
-
-Use identical prompts, fixed generation settings, raw response retention, and deterministic expected results. Measure reasoning, grounding, abstention, instruction following, tool choice, and latency separately. Keep a held out set for a stronger final assessment.
-
-
-## How do you evaluate the full system
-
-Run the complete graph with real local models, a fresh memory directory, and the isolated launcher. Check expected source content and abstention outcomes. Regression doubles separately verify deterministic contracts and failure behavior.
-
-
-## What were the final results
-
-The live system passed seven of eight scenarios and 14 deterministic tests passed. The historical case was a false abstention. No claim is made that these small sets establish general safety or production readiness.
-
-
-## Why isolate an agent
-
-Tools and dependencies can consume resources or access data beyond the user’s task. Resource limits contain runaway work; containers or VMs can add stronger OS boundaries. The measured job object is resource isolation and must be described accurately.
-
-
-## What did you actually deploy
-
-Three local llama.cpp model servers and an application worker with a verified Windows Job Object. The local observability endpoint was smoke tested. Docker files were prepared, but Docker was unavailable and the container topology was not run.
-
-
-## What is monitored and where do alerts go
-
-Trace correlated node events, model tier and token usage, source IDs, outcomes, repairs, failures, and durations. Data stays in local JSONL and Prometheus text files. Active alerts go to alerts.jsonl; no external channel is configured.
-
-
-## Can the verifier guarantee correctness
-
-No. Exact matching establishes that quoted text occurs in retrieved evidence; the verifier judges relevance and completeness but can be wrong. Shared family models can share errors. Human review and larger adversarial evals remain necessary.
-
-
-## How is compute optimized
-
-The smallest model plans, the 2B model handles normal selection, and 4B handles complexity and verification. Five calls and one repair bound per request work. Aggregate energy or monetary savings were not measured.
-
-
-## What would you improve first
-
-Investigate false abstention with verifier review of empty answers, then evaluate paraphrase retrieval and temporal conflicts on a held out set. For deployment, verify Docker, authenticate sessions, enforce retention, and centralize monitoring.
-
-
-# References and artifact provenance
+# Sources
 
 [Project repository](https://github.com/Rasarow/autumn-multi-agent-system)
 
 [Exact source commit used for excerpts](https://github.com/Rasarow/autumn-multi-agent-system/tree/fae9099a3fb1899824899da286d2be017050debb)
 
 [Successful GitHub Actions validation of the pinned source](https://github.com/Rasarow/autumn-multi-agent-system/actions/runs/42864668452)
-
-Primary documentation and repository pages were checked on 10 November 2026. Model and runtime identities are additionally recorded with pinned revisions and SHA256 checksums in artifact_manifest.json. No repository star counts are used as selection evidence.
 
 [1] Qwen model cards
 
